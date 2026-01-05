@@ -8,8 +8,9 @@ import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag,
 type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization';
 
 const App: React.FC = () => {
-  // Default view set to 'speedup' as requested
-  const [view, setView] = useState<ViewMode>('speedup');
+  // Default view set to 'mobilization' as requested
+  // To switch back to Strongest Lord, change 'mobilization' to 'speedup'
+  const [view, setView] = useState<ViewMode>('mobilization');
   const [isCopied, setIsCopied] = useState(false);
   const [copiedPastCode, setCopiedPastCode] = useState<string | null>(null);
 
@@ -72,8 +73,8 @@ const App: React.FC = () => {
         <div className="max-w-2xl mx-auto px-4">
           <div className="bg-slate-900/80 p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative overflow-hidden">
              {[
-               { id: 'speedup', icon: Zap, label: '最強領主', color: 'bg-amber-600', text: 'text-amber-400' },
                { id: 'mobilization', icon: Flag, label: '総動員', color: 'bg-indigo-600', text: 'text-indigo-400' },
+               { id: 'speedup', icon: Zap, label: '最強領主', color: 'bg-amber-600', text: 'text-amber-400' },
                { id: 'resource', icon: Pickaxe, label: '資源', color: 'bg-blue-600', text: 'text-blue-400' },
                { id: 'giftcode', icon: Gift, label: 'ギフコ', color: 'bg-emerald-600', text: 'text-emerald-400' },
              ].map((tab) => {
