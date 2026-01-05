@@ -751,6 +751,142 @@ const MobilizationGuide: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto space-y-6">
 
+      {/* --- NEW SECTION: Reference Table (MOVED TO TOP) --- */}
+           <div className="bg-[#0F172A]/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-xl mb-6 relative">
+             {/* Overlay for Detail Popup */}
+             {openDetailId && (
+               <>
+                 {/* Transparent Fixed Overlay for Click-Out */}
+                 <div 
+                   className="fixed inset-0 z-40 bg-transparent"
+                   onClick={() => setOpenDetailId(null)}
+                 />
+                 {/* Positioned Popup (Smaller, near items) */}
+                 <div 
+                   className="absolute z-50 bottom-12 left-1/2 transform -translate-x-1/2 w-72 max-h-96 bg-[#1E293B] border border-slate-600 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+                   onClick={(e) => e.stopPropagation()}
+                 >
+                   <div className="p-3 border-b border-slate-700 flex items-center justify-between bg-slate-800/50 shrink-0">
+                     <h4 className="font-bold text-white text-xs flex items-center gap-2">
+                       <Info className="w-3.5 h-3.5 text-indigo-400" />
+                       {openDetailId === 'lord_equip' ? '領主装備評価ポイント' : '領主宝石評価ポイント'}
+                     </h4>
+                     <button onClick={() => setOpenDetailId(null)} className="text-slate-400 hover:text-white transition-colors">
+                       <X className="w-4 h-4" />
+                     </button>
+                   </div>
+                   <div className="overflow-y-auto p-0">
+                     <table className="w-full text-xs">
+                       <thead className="bg-slate-800/80 sticky top-0">
+                         <tr>
+                           <th className="p-2 text-left font-bold text-slate-400">{openDetailId === 'lord_equip' ? '装備ランク' : '宝石レベル'}</th>
+                           <th className="p-2 text-right font-bold text-slate-400">評価スコア</th>
+                         </tr>
+                       </thead>
+                       <tbody className="divide-y divide-slate-700/50">
+                         {openDetailId === 'lord_equip' ? (
+                           LORD_EQUIPMENT_SCORES.map((item, idx) => (
+                             <tr key={idx} className="hover:bg-white/5">
+                               <td className="p-2 text-slate-300">{item.rank}</td>
+                               <td className="p-2 text-right font-mono font-bold text-white">{item.score.toLocaleString()}</td>
+                             </tr>
+                           ))
+                         ) : (
+                           LORD_GEM_SCORES.map((item, idx) => (
+                             <tr key={idx} className="hover:bg-white/5">
+                               <td className="p-2 text-slate-300">{item.level}</td>
+                               <td className="p-2 text-right font-mono font-bold text-white">{item.score.toLocaleString()}</td>
+                             </tr>
+                           ))
+                         )}
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+               </>
+             )}
+
+             <button
+               onClick={() => setIsReferenceTableOpen(!isReferenceTableOpen)}
+               className="w-full p-4 flex items-center justify-between bg-slate-800/50 hover:bg-slate-800/80 transition-colors text-left group"
+             >
+               <div className="flex items-center gap-3">
+                 <Table className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                 <span className="text-base font-bold text-slate-200">クエストポイント早見表</span>
+               </div>
+               {isReferenceTableOpen ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+             </button>
+
+             {isReferenceTableOpen && (
+               <div className="overflow-x-auto p-4 animate-in slide-in-from-top-2 border-t border-white/5">
+                 <table className="w-full text-sm border-collapse min-w-[500px]">
+                   <thead>
+                     <tr className="bg-slate-900 border-b border-slate-700">
+                       <th className="p-3 text-left font-bold text-slate-400 w-1/4">項目</th>
+                       <th className="p-3 text-center font-bold text-yellow-400 bg-yellow-500/10 w-1/4">黄色</th>
+                       <th className="p-3 text-center font-bold text-purple-400 bg-purple-500/10 w-1/4">紫</th>
+                       <th className="p-3 text-center font-bold text-blue-400 bg-blue-500/10 w-1/4">青</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                     {MOBILIZATION_QUESTS.map((quest, qIdx) => {
+                       // Filter variants by rank for this quest type
+                       const yellowVariants = quest.variants.filter(v => v.rank === '黄');
+                       const purpleVariants = quest.variants.filter(v => v.rank === '紫');
+                       const blueVariants = quest.variants.filter(v => v.rank === '青');
+                       
+                       const hasDetail = quest.type === 'lord_equip' || quest.type === 'lord_gem';
+
+                       const renderVariantCell = (variants: any[]) => {
+                          if (variants.length === 0) return <span className="text-slate-600">-</span>;
+                          return (
+                            <div className="flex flex-col gap-1 items-center">
+                              {variants.map((v, i) => (
+                                <div key={i} className="text-xs">
+                                  <div className="text-white font-mono font-bold">{v.cost.toLocaleString()} <span className="text-[10px] text-slate-500 font-sans">{quest.unit}</span></div>
+                                  <div className={`text-[10px] font-bold ${v.rank === '黄' ? 'text-yellow-600' : v.rank === '紫' ? 'text-purple-500' : 'text-blue-500'}`}>
+                                      {v.points > 0 ? `+${v.points}pt` : '不明'}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                       };
+
+                       return (
+                         <tr key={qIdx} className="border-b border-slate-800 last:border-0 hover:bg-slate-800/30 transition-colors">
+                           <td className="p-3 text-slate-300 font-bold bg-slate-900/30 relative">
+                              <div className="flex items-center gap-2">
+                                <span>{quest.label}</span>
+                                {hasDetail && (
+                                  <button 
+                                    onClick={() => setOpenDetailId(quest.type)}
+                                    className="text-slate-500 hover:text-indigo-400 transition-colors"
+                                  >
+                                    <HelpCircle className="w-4 h-4" />
+                                  </button>
+                                )}
+                              </div>
+                              <div className="text-[9px] text-slate-500 font-normal">{quest.unit}</div>
+                           </td>
+                           <td className="p-3 text-center bg-yellow-500/5 align-top">
+                              {renderVariantCell(yellowVariants)}
+                           </td>
+                           <td className="p-3 text-center bg-purple-500/5 align-top">
+                              {renderVariantCell(purpleVariants)}
+                           </td>
+                           <td className="p-3 text-center bg-blue-500/5 align-top">
+                              {renderVariantCell(blueVariants)}
+                           </td>
+                         </tr>
+                       );
+                     })}
+                   </tbody>
+                 </table>
+               </div>
+             )}
+           </div>
+
       {/* Inventory Inputs */}
       <div className="bg-[#0F172A]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-xl">
         <h3 className="text-slate-300 text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2">
@@ -1225,142 +1361,6 @@ const MobilizationGuide: React.FC = () => {
                       )}
 
                     </div>
-               </div>
-             )}
-           </div>
-
-           {/* --- NEW SECTION: Reference Table --- */}
-           <div className="bg-[#0F172A]/80 backdrop-blur-xl rounded-2xl border border-white/10 overflow-hidden shadow-xl mb-6 relative">
-             {/* Overlay for Detail Popup */}
-             {openDetailId && (
-               <>
-                 {/* Transparent Fixed Overlay for Click-Out */}
-                 <div 
-                   className="fixed inset-0 z-40 bg-transparent"
-                   onClick={() => setOpenDetailId(null)}
-                 />
-                 {/* Positioned Popup (Smaller, near items) */}
-                 <div 
-                   className="absolute z-50 bottom-12 left-1/2 transform -translate-x-1/2 w-72 max-h-96 bg-[#1E293B] border border-slate-600 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
-                   onClick={(e) => e.stopPropagation()}
-                 >
-                   <div className="p-3 border-b border-slate-700 flex items-center justify-between bg-slate-800/50 shrink-0">
-                     <h4 className="font-bold text-white text-xs flex items-center gap-2">
-                       <Info className="w-3.5 h-3.5 text-indigo-400" />
-                       {openDetailId === 'lord_equip' ? '領主装備評価ポイント' : '領主宝石評価ポイント'}
-                     </h4>
-                     <button onClick={() => setOpenDetailId(null)} className="text-slate-400 hover:text-white transition-colors">
-                       <X className="w-4 h-4" />
-                     </button>
-                   </div>
-                   <div className="overflow-y-auto p-0">
-                     <table className="w-full text-xs">
-                       <thead className="bg-slate-800/80 sticky top-0">
-                         <tr>
-                           <th className="p-2 text-left font-bold text-slate-400">{openDetailId === 'lord_equip' ? '装備ランク' : '宝石レベル'}</th>
-                           <th className="p-2 text-right font-bold text-slate-400">評価スコア</th>
-                         </tr>
-                       </thead>
-                       <tbody className="divide-y divide-slate-700/50">
-                         {openDetailId === 'lord_equip' ? (
-                           LORD_EQUIPMENT_SCORES.map((item, idx) => (
-                             <tr key={idx} className="hover:bg-white/5">
-                               <td className="p-2 text-slate-300">{item.rank}</td>
-                               <td className="p-2 text-right font-mono font-bold text-white">{item.score.toLocaleString()}</td>
-                             </tr>
-                           ))
-                         ) : (
-                           LORD_GEM_SCORES.map((item, idx) => (
-                             <tr key={idx} className="hover:bg-white/5">
-                               <td className="p-2 text-slate-300">{item.level}</td>
-                               <td className="p-2 text-right font-mono font-bold text-white">{item.score.toLocaleString()}</td>
-                             </tr>
-                           ))
-                         )}
-                       </tbody>
-                     </table>
-                   </div>
-                 </div>
-               </>
-             )}
-
-             <button
-               onClick={() => setIsReferenceTableOpen(!isReferenceTableOpen)}
-               className="w-full p-4 flex items-center justify-between bg-slate-800/50 hover:bg-slate-800/80 transition-colors text-left group"
-             >
-               <div className="flex items-center gap-3">
-                 <Table className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
-                 <span className="text-base font-bold text-slate-200">クエストポイント早見表</span>
-               </div>
-               {isReferenceTableOpen ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
-             </button>
-
-             {isReferenceTableOpen && (
-               <div className="overflow-x-auto p-4 animate-in slide-in-from-top-2 border-t border-white/5">
-                 <table className="w-full text-sm border-collapse min-w-[500px]">
-                   <thead>
-                     <tr className="bg-slate-900 border-b border-slate-700">
-                       <th className="p-3 text-left font-bold text-slate-400 w-1/4">項目</th>
-                       <th className="p-3 text-center font-bold text-yellow-400 bg-yellow-500/10 w-1/4">黄色</th>
-                       <th className="p-3 text-center font-bold text-purple-400 bg-purple-500/10 w-1/4">紫</th>
-                       <th className="p-3 text-center font-bold text-blue-400 bg-blue-500/10 w-1/4">青</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                     {MOBILIZATION_QUESTS.map((quest, qIdx) => {
-                       // Filter variants by rank for this quest type
-                       const yellowVariants = quest.variants.filter(v => v.rank === '黄');
-                       const purpleVariants = quest.variants.filter(v => v.rank === '紫');
-                       const blueVariants = quest.variants.filter(v => v.rank === '青');
-                       
-                       const hasDetail = quest.type === 'lord_equip' || quest.type === 'lord_gem';
-
-                       const renderVariantCell = (variants: any[]) => {
-                          if (variants.length === 0) return <span className="text-slate-600">-</span>;
-                          return (
-                            <div className="flex flex-col gap-1 items-center">
-                              {variants.map((v, i) => (
-                                <div key={i} className="text-xs">
-                                  <div className="text-white font-mono font-bold">{v.cost.toLocaleString()} <span className="text-[10px] text-slate-500 font-sans">{quest.unit}</span></div>
-                                  <div className={`text-[10px] font-bold ${v.rank === '黄' ? 'text-yellow-600' : v.rank === '紫' ? 'text-purple-500' : 'text-blue-500'}`}>
-                                      {v.points > 0 ? `+${v.points}pt` : '不明'}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          );
-                       };
-
-                       return (
-                         <tr key={qIdx} className="border-b border-slate-800 last:border-0 hover:bg-slate-800/30 transition-colors">
-                           <td className="p-3 text-slate-300 font-bold bg-slate-900/30 relative">
-                              <div className="flex items-center gap-2">
-                                <span>{quest.label}</span>
-                                {hasDetail && (
-                                  <button 
-                                    onClick={() => setOpenDetailId(quest.type)}
-                                    className="text-slate-500 hover:text-indigo-400 transition-colors"
-                                  >
-                                    <HelpCircle className="w-4 h-4" />
-                                  </button>
-                                )}
-                              </div>
-                              <div className="text-[9px] text-slate-500 font-normal">{quest.unit}</div>
-                           </td>
-                           <td className="p-3 text-center bg-yellow-500/5 align-top">
-                              {renderVariantCell(yellowVariants)}
-                           </td>
-                           <td className="p-3 text-center bg-purple-500/5 align-top">
-                              {renderVariantCell(purpleVariants)}
-                           </td>
-                           <td className="p-3 text-center bg-blue-500/5 align-top">
-                              {renderVariantCell(blueVariants)}
-                           </td>
-                         </tr>
-                       );
-                     })}
-                   </tbody>
-                 </table>
                </div>
              )}
            </div>
