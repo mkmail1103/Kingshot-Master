@@ -80,7 +80,7 @@ const TimeInput = ({
     <div className="bg-[#1E293B] border border-slate-700 rounded-xl p-3 flex items-center justify-between gap-3">
        <div className="flex items-center gap-2">
          {Icon && <Icon className={`w-8 h-8 ${colorClass}`} />}
-         <label className={`block text-xs font-bold uppercase text-slate-300`}>{label}</label>
+         <label className={`block text-xs font-bold uppercase text-slate-300 break-keep`}>{label}</label>
        </div>
        <div className="relative w-32">
           <input 
@@ -149,7 +149,7 @@ const ResourceInput = ({
           <Icon className={`w-6 h-6 ${iconColor}`} />
        </div>
        <div className="flex-1">
-          <label className="text-xs font-bold text-slate-400 uppercase block mb-0.5">{label}</label>
+          <label className="text-xs font-bold text-slate-400 uppercase block mb-0.5 break-keep">{label}</label>
           <div className="relative">
              <input 
                type="text" 
@@ -928,7 +928,7 @@ const MobilizationGuide: React.FC = () => {
                  <div className="flex items-center justify-between text-xs font-bold text-slate-500 uppercase mb-2">
                     <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> 加速アイテム (分)</span>
                     <label className={`
-                        flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-bold cursor-pointer transition-all
+                        flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer transition-all border whitespace-nowrap
                         ${isAnalyzing 
                         ? 'bg-slate-700 text-slate-400 cursor-not-allowed' 
                         : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30'
@@ -977,7 +977,7 @@ const MobilizationGuide: React.FC = () => {
                                <ArrowRight className="w-3 h-3 text-slate-600" />
                                <span className="text-amber-400">分にチェック</span>
                             </div>
-                            <p className="text-[9px] text-slate-500 mt-1.5 leading-relaxed">
+                            <p className="text-[9px] text-slate-500 mt-1.5 leading-relaxed break-keep">
                                ※スクショの場合は「日時分」表示のままでも自動計算されます
                             </p>
                         </div>
@@ -1054,12 +1054,12 @@ const MobilizationGuide: React.FC = () => {
                     <div className="grid grid-cols-2 gap-3">
                         <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
                             <div className="text-emerald-400 font-bold mb-1 text-xs">33回 (節約)</div>
-                            <div className="text-[10px] text-slate-400 mb-1">初期9 + 毎日4個×6日</div>
+                            <div className="text-[10px] text-slate-400 mb-1 break-keep">初期9 + 毎日4個×6日</div>
                             <div className="text-[10px] text-slate-300 font-bold">コスト: 50×3×6 = <span className="text-white">900ダイヤ</span></div>
                         </div>
                         <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
                             <div className="text-blue-400 font-bold mb-1 text-xs">51回 (完走)</div>
-                            <div className="text-[10px] text-slate-400 mb-1">初期9 + 毎日7個×6日</div>
+                            <div className="text-[10px] text-slate-400 mb-1 break-keep">初期9 + 毎日7個×6日</div>
                             <div className="text-[10px] text-slate-300 font-bold">コスト: 750×6 = <span className="text-white">4,500ダイヤ</span></div>
                         </div>
                     </div>
@@ -1075,7 +1075,7 @@ const MobilizationGuide: React.FC = () => {
                         <h4 className="text-xs font-bold text-slate-400 mb-2 ml-6 flex items-center gap-1">
                             <Info className="w-3 h-3" /> なぜ「青ランク」がお得なのか？
                         </h4>
-                        <p className="text-[11px] text-slate-400 ml-6 leading-relaxed mb-4">
+                        <p className="text-[11px] text-slate-400 ml-6 leading-relaxed mb-4 break-keep">
                             黄ランクは1回で大量のポイントを稼げますが、消費アイテム量が莫大です。<br/>
                             青ランクはポイントは控えめですが、消費アイテムが非常に少なく済みます。
                         </p>
@@ -1094,7 +1094,7 @@ const MobilizationGuide: React.FC = () => {
                                 <div className="text-[10px] text-white font-bold pt-2 border-t border-slate-800/50">1ptあたり5.6分消費</div>
                             </div>
                         </div>
-                        <div className="bg-slate-900/50 p-2 text-center text-[10px] font-bold text-emerald-400 border-t border-slate-800">
+                        <div className="bg-slate-900/50 p-2 text-center text-[10px] font-bold text-emerald-400 border-t border-slate-800 break-keep">
                             青ランクの方が圧倒的に低コストでポイントを稼げます！
                         </div>
                     </div>
@@ -1126,7 +1126,7 @@ const MobilizationGuide: React.FC = () => {
                     {targetQuests === 33 && <CheckCircle2 className="w-5 h-5 text-emerald-500" />}
                  </div>
                  <div className={`text-xs font-bold mb-1 ${targetQuests === 33 ? 'text-emerald-200' : 'text-slate-400'}`}>節約・微課金コース</div>
-                 <p className="text-[10px] text-slate-500 leading-snug">
+                 <p className="text-[10px] text-slate-500 leading-snug break-keep">
                    コスト約900ダイヤ。<br/>
                    毎日4回追加のペース。
                  </p>
@@ -1145,7 +1145,7 @@ const MobilizationGuide: React.FC = () => {
                     {targetQuests === 51 && <CheckCircle2 className="w-5 h-5 text-rose-500" />}
                  </div>
                  <div className={`text-xs font-bold mb-1 ${targetQuests === 51 ? 'text-rose-200' : 'text-slate-400'}`}>完走・ガチコース</div>
-                 <p className="text-[10px] text-slate-500 leading-snug">
+                 <p className="text-[10px] text-slate-500 leading-snug break-keep">
                    コスト約4500ダイヤ。<br/>
                    最大報酬を目指すプラン。
                  </p>
@@ -1189,13 +1189,13 @@ const MobilizationGuide: React.FC = () => {
                     <TrendingUp className="w-4 h-4 text-amber-400" />
                     目標: {targetQuests}回 ／ Max 69回
                  </h4>
-                 <p className="text-xs text-slate-400">
+                 <p className="text-xs text-slate-400 break-keep">
                     現在の予算内で{targetQuests}回を達成できるように、<strong className="text-indigo-300">「青・紫・黄」を自動でミックス</strong>して最大得点を狙います。
                  </p>
               </div>
               <div className="flex items-center gap-2 text-xs bg-slate-800 px-3 py-2 rounded-lg border border-slate-700">
                  <Coins className="w-4 h-4 text-amber-400" />
-                 <span className="text-slate-300">必要枠コスト:</span>
+                 <span className="text-slate-300 break-keep">必要枠コスト:</span>
                  <span className="font-bold text-white tabular-nums">{costAnalysis.totalCost.toLocaleString()} ダイヤ</span>
               </div>
            </div>
@@ -1212,7 +1212,7 @@ const MobilizationGuide: React.FC = () => {
                       </div>
                       <div>
                           <h4 className="text-lg font-bold text-emerald-200">目標回数の引き上げ推奨！</h4>
-                          <p className="text-sm text-slate-300 mt-1 leading-snug">
+                          <p className="text-sm text-slate-300 mt-1 leading-snug break-keep">
                              現在の予算なら、<span className="text-white font-bold">{suggestion.newTarget}回</span> まで増やしても達成可能です。<br/>
                              これにより、さらに <span className="text-amber-400 font-bold">+{suggestion.pointGain.toLocaleString()}pt</span> 獲得できます。<br/>
                              (追加コスト: <span className="font-bold text-white">{suggestion.additionalCost.toLocaleString()} ダイヤ</span>)
@@ -1244,7 +1244,7 @@ const MobilizationGuide: React.FC = () => {
                    </div>
                    <div>
                       <h3 className="text-white font-bold text-lg sm:text-xl whitespace-nowrap">最適ミックス推奨プラン</h3>
-                      <p className="text-indigo-200 text-xs sm:text-sm mt-0.5 whitespace-pre-wrap">
+                      <p className="text-indigo-200 text-xs sm:text-sm mt-0.5 whitespace-pre-wrap break-keep">
                         {simulation.totalQuests >= targetQuests 
                            ? '目標達成！\nポイント最大化のためにランクを調整済' 
                            : '予算不足により目標未達\n不足分をご確認ください'}
@@ -1287,7 +1287,7 @@ const MobilizationGuide: React.FC = () => {
                                   目標まであと <span className="text-2xl font-black text-white">{gapAnalysis.missing}</span> 回
                               </h4>
                               
-                              <p className="text-xs text-slate-400 mb-4 relative z-10">
+                              <p className="text-xs text-slate-400 mb-4 relative z-10 break-keep">
                                   以下のいずれかの方法で不足分の回数を埋めると、{targetQuests}回を達成できます。
                               </p>
 
@@ -1300,7 +1300,7 @@ const MobilizationGuide: React.FC = () => {
                                               </div>
                                               <div>
                                                   <div className={`font-bold text-sm ${prop.color}`}>{prop.label}</div>
-                                                  <div className="text-[10px] text-slate-500">{prop.desc}</div>
+                                                  <div className="text-[10px] text-slate-500 break-keep">{prop.desc}</div>
                                               </div>
                                           </div>
                                           <div className="text-right">
@@ -1322,7 +1322,7 @@ const MobilizationGuide: React.FC = () => {
                               </div>
                               <div>
                                   <h4 className="text-emerald-200 font-bold text-lg">予算のみで目標達成可能です！</h4>
-                                  <p className="text-emerald-200/70 text-sm">「青」で回数を確保し、余剰分で「黄・紫」へ自動アップグレードしました。</p>
+                                  <p className="text-emerald-200/70 text-sm break-keep">「青」で回数を確保し、余剰分で「黄・紫」へ自動アップグレードしました。</p>
                               </div>
                           </div>
                       )}

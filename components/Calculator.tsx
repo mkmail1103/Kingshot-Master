@@ -414,7 +414,7 @@ const Calculator: React.FC = () => {
               <div className="md:col-span-2 space-y-3">
                 <div className="flex justify-between items-baseline">
                   <label className="text-sm font-semibold text-slate-300 uppercase tracking-wider">総力の上昇値</label>
-                  <span className="text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded">手動入力モード</span>
+                  <span className="text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded whitespace-nowrap">手動入力モード</span>
                 </div>
                 <div className="relative">
                   <CompositionInput
@@ -440,7 +440,7 @@ const Calculator: React.FC = () => {
                 
                 <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl p-4 flex gap-3 text-sm text-rose-200 shadow-inner">
                     <Info className="w-5 h-5 shrink-0 text-rose-400 mt-0.5" />
-                    <p className="leading-relaxed">
+                    <p className="leading-relaxed break-keep">
                         兵士訓練/昇格によるポイントは <span className="font-bold text-white">訓練の日 ＞ 総力UP ＞ 加速消費の日</span> と基本的になってるので、加速は<span className="font-bold text-white underline decoration-rose-500 underline-offset-4 mx-1">訓練の日</span>に使い切りましょう。
                     </p>
                 </div>
@@ -449,7 +449,7 @@ const Calculator: React.FC = () => {
                 <div className="flex flex-col md:flex-row gap-3 md:gap-4">
                   <button
                     onClick={() => setTroopSubMode('train')}
-                    className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold flex items-center justify-center gap-2 transition-all ${
+                    className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold flex items-center justify-center gap-2 transition-all whitespace-nowrap ${
                       troopSubMode === 'train' 
                         ? 'border-rose-500 bg-rose-500/10 text-rose-100' 
                         : 'border-slate-700 bg-[#1E293B] text-slate-500 hover:border-slate-600'
@@ -460,7 +460,7 @@ const Calculator: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setTroopSubMode('promote')}
-                    className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold flex items-center justify-center gap-2 transition-all ${
+                    className={`flex-1 py-4 px-4 rounded-xl border-2 font-bold flex items-center justify-center gap-2 transition-all whitespace-nowrap ${
                       troopSubMode === 'promote' 
                         ? 'border-rose-500 bg-rose-500/10 text-rose-100' 
                         : 'border-slate-700 bg-[#1E293B] text-slate-500 hover:border-slate-600'
@@ -554,8 +554,8 @@ const Calculator: React.FC = () => {
                      <div className="text-left flex flex-col gap-3">
                         <div>
                            <div className="flex items-center gap-2 mb-0.5">
-                              <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider bg-purple-500/10 px-1.5 py-0.5 rounded">研究の日 (45倍)</span>
-                              <span className="text-[10px] text-slate-400">の境目</span>
+                              <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider bg-purple-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">研究の日 (45倍)</span>
+                              <span className="text-[10px] text-slate-400 whitespace-nowrap">の境目</span>
                            </div>
                            <div className="text-2xl font-black text-white font-mono tracking-tight leading-none">
                               {formatThresholdTime(thresholdResearch)}
@@ -563,8 +563,8 @@ const Calculator: React.FC = () => {
                         </div>
                         <div className="relative pl-3 border-l-2 border-slate-700">
                            <div className="flex items-center gap-2 mb-0.5">
-                              <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-1.5 py-0.5 rounded">総力UP (30倍)</span>
-                              <span className="text-[10px] text-slate-400">の境目</span>
+                              <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-1.5 py-0.5 rounded whitespace-nowrap">総力UP (30倍)</span>
+                              <span className="text-[10px] text-slate-400 whitespace-nowrap">の境目</span>
                            </div>
                            <div className="text-xl font-bold text-slate-300 font-mono tracking-tight leading-none">
                               {formatThresholdTime(thresholdStandard)}
@@ -574,7 +574,7 @@ const Calculator: React.FC = () => {
                   ) : (
                      <div className="text-left">
                         <div className="flex items-center gap-2 mb-0.5">
-                           <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">お得ライン (境目)</span>
+                           <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider whitespace-nowrap">お得ライン (境目)</span>
                            <span className="bg-slate-700 text-[10px] px-1.5 py-0.5 rounded text-slate-300 whitespace-nowrap hidden sm:inline-block">入力不要で確認可能</span>
                         </div>
                         <div className="text-2xl md:text-3xl font-black text-white font-mono tracking-tight leading-none">
@@ -586,10 +586,10 @@ const Calculator: React.FC = () => {
 
                 <div className="text-center md:text-right w-full md:w-auto bg-white/5 md:bg-transparent p-3 md:p-0 rounded-lg">
                   <div className="flex flex-col items-center md:items-end gap-0.5">
-                    <p className="text-xs md:text-sm text-slate-300 leading-snug">
+                    <p className="text-xs md:text-sm text-slate-300 leading-snug break-keep">
                       残り時間がこれより<span className={`${mode === 'research' ? 'text-white' : 'text-amber-400'} font-bold text-sm md:text-base mx-1`}>短ければ</span>{mode === 'research' ? '各イベント' : '総力UP'}！
                     </p>
-                    <p className="text-xs md:text-sm text-slate-300 leading-snug">
+                    <p className="text-xs md:text-sm text-slate-300 leading-snug break-keep">
                       <span className="text-blue-400 font-bold text-sm md:text-base mr-1">長ければ</span>加速消費推奨
                     </p>
                   </div>
@@ -664,10 +664,10 @@ const Calculator: React.FC = () => {
                     <div className="w-24 h-24 mx-auto bg-amber-500/20 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-amber-500/20 ring-1 ring-amber-500/50">
                       <Zap className="w-12 h-12 text-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]" />
                     </div>
-                    <div className="text-5xl md:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight">
+                    <div className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight break-keep">
                       <span className="text-transparent bg-clip-text bg-gradient-to-b from-amber-300 to-amber-500">総力UP</span>で<br/>加速！
                     </div>
-                    <p className="text-amber-200/80 font-medium text-lg mb-8">
+                    <p className="text-amber-200/80 font-medium text-lg mb-8 break-keep">
                       {modeInfo[mode].label}ポイントデーが最適です
                     </p>
                   </div>
@@ -678,10 +678,10 @@ const Calculator: React.FC = () => {
                     <div className="w-24 h-24 mx-auto bg-blue-500/20 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 ring-1 ring-blue-500/50">
                       <Clock className="w-12 h-12 text-blue-400 drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
                     </div>
-                    <div className="text-5xl md:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight">
+                    <div className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight break-keep">
                       <span className="text-transparent bg-clip-text bg-gradient-to-b from-blue-300 to-blue-500">加速消費</span>まで<br/>待機
                     </div>
-                    <p className="text-blue-200/80 font-medium text-lg mb-8">金曜日まで温存しましょう</p>
+                    <p className="text-blue-200/80 font-medium text-lg mb-8 break-keep">金曜日まで温存しましょう</p>
                   </div>
                 )}
 
@@ -690,10 +690,10 @@ const Calculator: React.FC = () => {
                     <div className="w-24 h-24 mx-auto bg-rose-500/20 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-rose-500/20 ring-1 ring-rose-500/50">
                       <Trophy className="w-12 h-12 text-rose-400 drop-shadow-[0_0_10px_rgba(225,29,72,0.5)]" />
                     </div>
-                    <div className="text-5xl md:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight">
+                    <div className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight break-keep">
                       <span className="text-transparent bg-clip-text bg-gradient-to-b from-rose-300 to-rose-500">兵士訓練</span>まで<br/>待機
                     </div>
-                    <p className="text-rose-200/80 font-medium text-lg mb-8">「訓練の日」が最もポイントを稼げます</p>
+                    <p className="text-rose-200/80 font-medium text-lg mb-8 break-keep">「訓練の日」が最もポイントを稼げます</p>
                   </div>
                 )}
 
@@ -702,10 +702,10 @@ const Calculator: React.FC = () => {
                     <div className="w-24 h-24 mx-auto bg-purple-500/20 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 ring-1 ring-purple-500/50">
                       <Microscope className="w-12 h-12 text-purple-400 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
                     </div>
-                    <div className="text-5xl md:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight">
+                    <div className="text-4xl sm:text-5xl font-black text-white mb-3 tracking-tight drop-shadow-lg leading-tight break-keep">
                       <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-300 to-purple-500">研究の日</span>まで<br/>待機
                     </div>
-                    <p className="text-purple-200/80 font-medium text-lg mb-8">1戦力45ptの日が最も高効率です</p>
+                    <p className="text-purple-200/80 font-medium text-lg mb-8 break-keep">1戦力45ptの日が最も高効率です</p>
                   </div>
                 )}
                 
@@ -714,8 +714,8 @@ const Calculator: React.FC = () => {
                     <div className="w-24 h-24 mx-auto bg-slate-700/30 rounded-full flex items-center justify-center mb-6">
                       <AlertCircle className="w-12 h-12 text-slate-400" />
                     </div>
-                    <div className="text-4xl font-bold text-slate-200 mb-3">どちらでも同じ</div>
-                    <p className="text-slate-400">獲得ポイントは同等です</p>
+                    <div className="text-4xl font-bold text-slate-200 mb-3 break-keep">どちらでも同じ</div>
+                    <p className="text-slate-400 break-keep">獲得ポイントは同等です</p>
                   </div>
                 )}
               </div>
@@ -859,12 +859,12 @@ const Calculator: React.FC = () => {
         </div>
         <div className="space-y-1">
           <h4 className="font-bold text-blue-300">計算ロジックと戦略メモ</h4>
-          <p className="mb-2">
+          <p className="mb-2 break-keep">
             境目となる時間（分） = 上昇する総力 × (イベント倍率 ÷ 300) <br/>
             通常建造・研究は倍率30、兵士は倍率20、<strong>研究の日</strong>は倍率45で計算されます。
           </p>
           {mode === 'troop' && (
-            <p className="text-rose-200/90 font-medium bg-rose-900/30 p-2 rounded border border-rose-500/30">
+            <p className="text-rose-200/90 font-medium bg-rose-900/30 p-2 rounded border border-rose-500/30 break-keep">
               ⚡ <strong>兵士イベントのヒント:</strong><br/>
               兵士イベントは「訓練の日」と「総力UPの日」の2種類でポイント獲得機会があります。<br/>
               上記グラフでポイントが高い日を狙って加速を使いましょう。<br/>
@@ -872,7 +872,7 @@ const Calculator: React.FC = () => {
             </p>
           )}
           {mode === 'research' && (
-            <p className="text-purple-200/90 font-medium bg-purple-900/30 p-2 rounded border border-purple-500/30">
+            <p className="text-purple-200/90 font-medium bg-purple-900/30 p-2 rounded border border-purple-500/30 break-keep">
               ⚡ <strong>研究イベントのヒント:</strong><br/>
               研究は「総力UP（30倍）」よりも「研究の日（45倍）」の方が圧倒的にポイント効率が良いです。<br/>
               急ぎでない場合は、研究の日に加速を使用することを強く推奨します。

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo } from 'react';
 import { createWorker } from 'tesseract.js';
 import { RESOURCE_CONFIGS, SOLDIER_RESOURCE_RATIOS } from '../constants';
@@ -246,7 +247,7 @@ const ResourceManager: React.FC = () => {
             <div className="bg-[#0F172A]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-4 shadow-xl">
                 <div className="flex items-center gap-2 mb-3 px-2">
                     <Scale className="w-5 h-5 text-indigo-400" />
-                    <h3 className="text-sm font-bold text-slate-200">標準バランス (20 : 20 : 4 : 1)</h3>
+                    <h3 className="text-sm font-bold text-slate-200 break-keep">標準バランス (20 : 20 : 4 : 1)</h3>
                 </div>
                 <div className="grid grid-cols-4 gap-2 text-center bg-slate-800/50 p-3 rounded-xl border border-white/5">
                     {RESOURCE_CONFIGS.map(config => (
@@ -268,7 +269,7 @@ const ResourceManager: React.FC = () => {
                                 <Calculator className="w-4 h-4" />
                                 総資源入力
                             </h3>
-                            <label className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-all ${isAnalyzing ? 'bg-slate-700 text-slate-400 cursor-not-allowed' : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30'}`}>
+                            <label className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-all whitespace-nowrap ${isAnalyzing ? 'bg-slate-700 text-slate-400 cursor-not-allowed' : 'bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30'}`}>
                                 <input type="file" accept="image/*" className="hidden" onChange={handleImageAnalysis} disabled={isAnalyzing} />
                                 {isAnalyzing ? <><Loader2 className="w-3.5 h-3.5 animate-spin" />解析中 (OCR)</> : <><Camera className="w-3.5 h-3.5" />画像から自動入力</>}
                             </label>
@@ -286,7 +287,7 @@ const ResourceManager: React.FC = () => {
                                         <ArrowRight className="w-3 h-3 rotate-90 sm:rotate-0" />
                                         <span className="text-amber-400">スクショまたは入力</span>
                                     </div>
-                                    <p className="text-[10px] text-slate-500 mt-2">※OCR解析のため、画像内の文字がはっきり見えるようにしてください。</p>
+                                    <p className="text-[10px] text-slate-500 mt-2 break-keep">※OCR解析のため、画像内の文字がはっきり見えるようにしてください。</p>
                                 </div>
                             )}
                         </div>
@@ -314,7 +315,7 @@ const ResourceManager: React.FC = () => {
                 <div className="space-y-6">
                     {hasAnyInput ? (
                         <div className="bg-[#0F172A]/80 backdrop-blur-xl rounded-2xl border border-white/10 p-6 shadow-xl h-full flex flex-col">
-                            <h3 className="text-slate-300 text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2">
+                            <h3 className="text-slate-300 text-sm font-bold uppercase tracking-wider mb-6 flex items-center gap-2 break-keep">
                                 <TrendingDown className="w-4 h-4" />採取優先度 (標準比率 20:20:4:1)
                             </h3>
                             <div className="space-y-4 flex-1">
@@ -352,7 +353,7 @@ const ResourceManager: React.FC = () => {
                             </div>
                             <div className="mt-6 pt-4 border-t border-white/5 text-center">
                                 {standardAnalysisData[0] && standardAnalysisData[0].ratio > 0 ? (
-                                    <p className="text-sm text-slate-400">標準バランスでは <span className="font-bold text-rose-400">{standardAnalysisData[0].name}</span> が不足しています。</p>
+                                    <p className="text-sm text-slate-400 break-keep">標準バランスでは <span className="font-bold text-rose-400">{standardAnalysisData[0].name}</span> が不足しています。</p>
                                 ) : null}
                             </div>
                         </div>
@@ -371,8 +372,8 @@ const ResourceManager: React.FC = () => {
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-lg bg-indigo-500 text-white"><Stethoscope className="w-5 h-5" /></div>
                             <div className="text-left">
-                                <h3 className="text-sm font-bold text-white">兵士治療シミュレーター</h3>
-                                <p className="text-[10px] text-slate-500">兵士レベルごとの治療コスト比率を確認</p>
+                                <h3 className="text-sm font-bold text-white break-keep">兵士治療シミュレーター</h3>
+                                <p className="text-[10px] text-slate-500 break-keep">兵士レベルごとの治療コスト比率を確認</p>
                             </div>
                         </div>
                     </div>

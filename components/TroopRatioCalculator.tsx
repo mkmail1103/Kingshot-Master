@@ -91,7 +91,7 @@ const FormattedInput = ({
             </div>
             <div>
                 <label className={`block font-bold uppercase text-slate-300 ${compact ? 'text-[10px]' : 'text-xs'}`}>{label}</label>
-                {subLabel && <span className="text-[10px] text-slate-500">{subLabel}</span>}
+                {subLabel && <span className="text-[10px] text-slate-500 leading-tight block break-keep">{subLabel}</span>}
             </div>
          </div>
        </div>
@@ -375,11 +375,11 @@ Kingshot Optimizerで計算`;
                             <span className="w-2 h-2 rounded-full bg-rose-400"></span> 敵軍 (Defender)
                         </div>
                         
-                        <div className="flex flex-col items-end gap-2 w-full sm:w-auto">
-                            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
+                            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto sm:justify-end">
                                 {/* OCR Button */}
                                 <label className={`
-                                    flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer transition-all border
+                                    flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold cursor-pointer transition-all border whitespace-nowrap
                                     ${isAnalyzing 
                                     ? 'bg-slate-800 text-slate-500 border-slate-700 cursor-not-allowed' 
                                     : 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30 hover:bg-indigo-500/20'
@@ -409,13 +409,13 @@ Kingshot Optimizerで計算`;
                                 <div className="bg-slate-900/80 p-1 rounded-lg flex items-center gap-1 border border-white/5">
                                     <button 
                                         onClick={() => setEnemyInputMode('ratio')}
-                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${enemyInputMode === 'ratio' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'}`}
+                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all whitespace-nowrap ${enemyInputMode === 'ratio' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'}`}
                                     >
                                         比率入力
                                     </button>
                                     <button 
                                         onClick={() => setEnemyInputMode('count')}
-                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${enemyInputMode === 'count' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'}`}
+                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all whitespace-nowrap ${enemyInputMode === 'count' ? 'bg-rose-500 text-white shadow-md' : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'}`}
                                     >
                                         実数入力
                                     </button>
@@ -423,25 +423,27 @@ Kingshot Optimizerで計算`;
                             </div>
 
                             {/* Instruction Toggle */}
-                            <button 
-                                onClick={() => setIsInstructionOpen(!isInstructionOpen)}
-                                className="flex items-center gap-1 text-[10px] text-slate-400 hover:text-white transition-colors"
-                            >
-                                <Info className="w-3 h-3" />
-                                <span>撮影の注意点</span>
-                                {isInstructionOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                            </button>
+                            <div className="flex justify-end w-full sm:w-auto">
+                                <button 
+                                    onClick={() => setIsInstructionOpen(!isInstructionOpen)}
+                                    className="flex items-center gap-1 text-[10px] text-slate-400 hover:text-white transition-colors"
+                                >
+                                    <Info className="w-3 h-3" />
+                                    <span>撮影の注意点</span>
+                                    {isInstructionOpen ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     {/* Instruction Guide */}
                     {isInstructionOpen && (
                         <div className="mb-6 bg-slate-900/80 rounded-xl p-4 border border-indigo-500/30 text-left animate-in slide-in-from-top-2">
-                            <h4 className="text-xs font-bold text-white mb-2 flex items-center gap-2">
+                            <h4 className="text-xs font-bold text-white mb-3 flex items-center gap-2">
                                 <Info className="w-3.5 h-3.5 text-indigo-400" />
                                 読み取り精度の上げ方
                             </h4>
-                            <ol className="text-[11px] text-slate-300 space-y-2 list-decimal list-inside mb-4">
+                            <ol className="text-xs text-slate-300 space-y-3 list-decimal list-outside ml-4 mb-4 leading-relaxed">
                                 <li>ゲーム内のメールから偵察レポートを開く</li>
                                 <li><span className="text-amber-400 font-bold">部隊総計の右にある「！」マーク</span>をタップする</li>
                                 <li><span className="text-white font-bold">％（比率）が表示された状態</span>でスクショを撮る</li>
@@ -454,7 +456,7 @@ Kingshot Optimizerで計算`;
                                     className="w-full max-w-[320px] h-auto rounded-lg border border-slate-700 shadow-lg"
                                 />
 
-                                <p className="text-[10px] text-slate-500 text-center max-w-[200px]">
+                                <p className="text-[10px] text-slate-500 text-center max-w-[200px] break-keep">
                                     この画面（％が表示されている状態）をスクリーンショットして読み込ませてください
                                 </p>
                             </div>
@@ -558,19 +560,19 @@ Kingshot Optimizerで計算`;
                             推奨兵士編成
                         </h3>
                         {result.isEmpty ? (
-                            <p className="text-slate-500 text-xs font-bold mt-1">
+                            <p className="text-slate-500 text-xs font-bold mt-1 break-keep">
                                 データ未入力のため、デフォルト（全盾）を表示しています
                             </p>
                         ) : (
                             <>
                                 {result.isAutoCapacity && (
-                                    <p className="text-indigo-300 text-xs font-bold mt-1 flex items-center gap-1">
+                                    <p className="text-indigo-300 text-xs font-bold mt-1 flex items-center gap-1 break-keep">
                                         <Info className="w-3 h-3" />
                                         自分の兵数が未入力のため、敵と同数（{result.total.toLocaleString()}）として比率を算出
                                     </p>
                                 )}
                                 {result.isOverflow && !result.isAutoCapacity && (
-                                    <p className="text-rose-400 text-xs font-bold mt-1 flex items-center gap-1">
+                                    <p className="text-rose-400 text-xs font-bold mt-1 flex items-center gap-1 break-keep">
                                         <AlertTriangle className="w-3 h-3" />
                                         出撃上限不足のため、火力を維持しつつ盾兵を0にして調整しました
                                     </p>
@@ -670,7 +672,7 @@ Kingshot Optimizerで計算`;
                     <h5 className="text-sm font-bold text-amber-400 mb-2 flex items-center gap-2">
                         <TrendingUp className="w-4 h-4" /> 推奨計算式（黄金比）
                     </h5>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                    <p className="text-sm text-slate-400 leading-relaxed mb-3 break-keep">
                         敵の編成を見て、火力を必要最小限にし、残りを耐久に回す計算式です。<br/>
                         <span className="text-xs text-slate-500">※自分の兵数が未入力の場合は、敵軍と同数の兵力があると仮定して比率を算出します。</span>
                     </p>
@@ -696,21 +698,21 @@ Kingshot Optimizerで計算`;
                             <div className="shrink-0 p-2 bg-blue-900/20 rounded-lg h-fit text-blue-400"><Shield className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">盾兵（歩兵）：壁役</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed">全ての攻撃を受け止める最重要ポジション。これが全滅すると、後衛（槍・弓）も即死する。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">全ての攻撃を受け止める最重要ポジション。これが全滅すると、後衛（槍・弓）も即死する。</p>
                             </div>
                         </div>
                         <div className="flex gap-3">
                             <div className="shrink-0 p-2 bg-emerald-900/20 rounded-lg h-fit text-emerald-400"><Swords className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">槍兵（騎兵）：対 弓</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed">敵の後衛（火力）を削るのが仕事。敵弓の「1/3の人数」で殲滅可能。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">敵の後衛（火力）を削るのが仕事。敵弓の「1/3の人数」で殲滅可能。</p>
                             </div>
                         </div>
                         <div className="flex gap-3">
                             <div className="shrink-0 p-2 bg-rose-900/20 rounded-lg h-fit text-rose-400"><Crosshair className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">弓兵（弓兵）：対 盾</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed">敵の前衛（壁）を削るのが仕事。敵盾の「1/2の人数」で殲滅可能。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">敵の前衛（壁）を削るのが仕事。敵盾の「1/2の人数」で殲滅可能。</p>
                             </div>
                         </div>
                     </div>
@@ -721,21 +723,21 @@ Kingshot Optimizerで計算`;
                     <ul className="space-y-3 text-sm text-slate-400">
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">①</span>
-                            <span>
+                            <span className="break-keep">
                                 <strong className="text-slate-300">盾の生存 ＝ 勝利</strong><br/>
                                 火力職（槍・弓）には防御力がありません。盾が生き残っている時間だけが、攻撃できる時間です。
                             </span>
                         </li>
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">②</span>
-                            <span>
+                            <span className="break-keep">
                                 <strong className="text-slate-300">火力枠は少数精鋭でよい</strong><br/>
                                 相性補正により、弓は2倍、槍は3倍の効率で敵を倒せます。過剰に編成する必要はありません。
                             </span>
                         </li>
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">③</span>
-                            <span>
+                            <span className="break-keep">
                                 <strong className="text-slate-300">余剰枠はすべて耐久へ</strong><br/>
                                 火力を計算式通りの最小限に抑え、浮いた枠をすべて「盾」に回すことで生存時間を最大化します。
                             </span>
