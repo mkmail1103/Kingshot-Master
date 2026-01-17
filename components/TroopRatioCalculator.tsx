@@ -3,6 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { createWorker } from 'tesseract.js';
 import { Shield, Swords, Crosshair, Users, Copy, Check, AlertTriangle, Info, PieChart, ArrowRight, TrendingUp, Percent, Calculator, Camera, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 
+
 // -----------------------------------------------------------------------------
 
 // Input helper for comma formatting
@@ -448,9 +449,9 @@ Kingshot Optimizerで計算`;
                             <div className="rounded-lg overflow-hidden border border-white/10 bg-black/20 p-6 flex flex-col items-center gap-4">
                                 {/* SAMPLE IMAGE loaded from PUBLIC folder */}
                                 <img 
-                                    src="scout_sample.jpg"
+                                    src="/sample.jpg" 
                                     alt="Scout Report Sample" 
-                                    className="w-full max-w-[320px] aspect-video object-cover rounded-lg border border-slate-700 shadow-lg"
+                                    className="w-full max-w-[320px] h-auto rounded-lg border border-slate-700 shadow-lg"
                                 />
 
                                 <p className="text-[10px] text-slate-500 text-center max-w-[200px]">
