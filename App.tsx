@@ -3,14 +3,15 @@ import React, { useState } from 'react';
 import Calculator from './components/Calculator';
 import ResourceManager from './components/ResourceManager';
 import MobilizationGuide from './components/MobilizationGuide';
-import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock } from 'lucide-react';
+import TroopRatioCalculator from './components/TroopRatioCalculator';
+import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart } from 'lucide-react';
 
-type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization';
+type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization' | 'ratio';
 
 const App: React.FC = () => {
   // Default view set to 'mobilization' as requested
   // To switch back to Strongest Lord, change 'mobilization' to 'speedup'
-  const [view, setView] = useState<ViewMode>('mobilization');
+  const [view, setView] = useState<ViewMode>('ratio');
   const [isCopied, setIsCopied] = useState(false);
   const [copiedPastCode, setCopiedPastCode] = useState<string | null>(null);
 
@@ -27,11 +28,14 @@ const App: React.FC = () => {
   };
 
   const LATEST_CODE = {
-    code: "SEEYOUIN2026",
-    limit: "2026年1月4日"
+    code: "ENERGY0112",
+    limit: "2026年1月15日"
   };
 
   const OTHER_CODES = [
+    { code: "jpseijin26", limit: "2026/01/15まで" },
+    { code: "THURMADNESS", limit: "2026/01/11まで" },
+    { code: "SEEYOUIN2026", limit: "2026/01/04まで" },
     { code: "JPX27KFOLLOW", limit: "2026/01/04まで" },
     { code: "KINGSHOTXMAS", limit: "2025/12/31まで" },
     { code: "THEKINGSTORE", limit: "2026/01/05まで" },
@@ -63,16 +67,17 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.24.11</div>
+            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.0</div>
           </div>
         </div>
       </header>
 
       {/* Navigation Bar - Modernized */}
-      <div className="sticky top-16 z-40 bg-[#0B1120]/60 backdrop-blur-md border-b border-white/5 py-4">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="bg-slate-900/80 p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative overflow-hidden">
+      <div className="sticky top-16 z-40 bg-[#0B1120]/60 backdrop-blur-md border-b border-white/5 py-4 overflow-x-auto no-scrollbar">
+        <div className="max-w-3xl mx-auto px-4 min-w-[360px]">
+          <div className="bg-slate-900/80 p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative">
              {[
+               { id: 'ratio', icon: PieChart, label: '兵士比率', color: 'bg-rose-600', text: 'text-rose-400' },
                { id: 'mobilization', icon: Flag, label: '総動員', color: 'bg-indigo-600', text: 'text-indigo-400' },
                { id: 'speedup', icon: Zap, label: '最強領主', color: 'bg-amber-600', text: 'text-amber-400' },
                { id: 'resource', icon: Pickaxe, label: '資源', color: 'bg-blue-600', text: 'text-blue-400' },
@@ -84,7 +89,7 @@ const App: React.FC = () => {
                  <button
                     key={tab.id}
                     onClick={() => setView(tab.id as ViewMode)}
-                    className={`flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-sm font-bold transition-all duration-300 relative ${
+                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-[11px] sm:text-sm font-bold transition-all duration-300 relative whitespace-nowrap ${
                       isActive 
                         ? 'bg-slate-800 text-white shadow-md shadow-black/20 ring-1 ring-white/10' 
                         : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
@@ -93,7 +98,7 @@ const App: React.FC = () => {
                    {isActive && (
                      <span className={`absolute bottom-0 left-0 right-0 h-1 rounded-b-lg ${tab.color}`}></span>
                    )}
-                   <Icon className={`w-4 h-4 ${isActive ? tab.text : 'opacity-70'}`} strokeWidth={isActive ? 2.5 : 2} />
+                   <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isActive ? tab.text : 'opacity-70'}`} strokeWidth={isActive ? 2.5 : 2} />
                    <span className={isActive ? 'opacity-100' : 'opacity-90'}>{tab.label}</span>
                  </button>
                );
@@ -105,6 +110,24 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 w-full max-w-6xl mx-auto py-8 px-4 md:px-6">
         
+        {view === 'ratio' && (
+           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+             <div className="text-center mb-8 max-w-3xl mx-auto">
+              <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-medium mb-4 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-rose-400 mr-2 animate-pulse"></span>
+                PvP編成シミュレーター
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight drop-shadow-2xl">
+                兵士比率カリキュレーター
+              </h2>
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl mx-auto">
+                敵の構成に合わせて、勝率を最大化する兵士配分を自動計算します。
+              </p>
+            </div>
+            <TroopRatioCalculator />
+           </div>
+        )}
+
         {view === 'mobilization' && (
            <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
              <div className="text-center mb-8 max-w-3xl mx-auto">
@@ -336,7 +359,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 text-sm">© 2026 Kingshot Optimizer. Unofficial Tool. v0.24.11</p>
+          <p className="text-slate-600 text-sm">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.0</p>
         </div>
       </footer>
     </div>
