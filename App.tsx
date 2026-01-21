@@ -28,11 +28,13 @@ const App: React.FC = () => {
   };
 
   const LATEST_CODE = {
-    code: "ENERGY0112",
-    limit: "2026年1月15日"
+    code: "KINGDOMSTAR",
+    limit: "2026年1月26日"
   };
 
   const OTHER_CODES = [
+    { code: "SAYCHEESE26", limit: "2026/01/25まで" },
+    { code: "ENERGY0112", limit: "2026/01/15まで" },
     { code: "jpseijin26", limit: "2026/01/15まで" },
     { code: "THURMADNESS", limit: "2026/01/11まで" },
     { code: "SEEYOUIN2026", limit: "2026/01/04まで" },
@@ -67,7 +69,7 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.0</div>
+            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.1</div>
           </div>
         </div>
       </header>
@@ -359,7 +361,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 text-sm">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.0</p>
+          <p className="text-slate-600 text-sm">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.1</p>
         </div>
       </footer>
     </div>

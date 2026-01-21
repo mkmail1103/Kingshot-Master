@@ -441,7 +441,7 @@ const Calculator: React.FC = () => {
                 <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl p-4 flex gap-3 text-sm text-rose-200 shadow-inner">
                     <Info className="w-5 h-5 shrink-0 text-rose-400 mt-0.5" />
                     <p className="leading-relaxed break-keep">
-                        兵士訓練/昇格によるポイントは <span className="font-bold text-white">訓練の日 ＞ 総力UP ＞ 加速消費の日</span> と基本的になってるので、加速は<span className="font-bold text-white underline decoration-rose-500 underline-offset-4 mx-1">訓練の日</span>に使い切りましょう。
+                        兵士訓練/昇格によるポイントは<br /> <span className="font-bold text-white">訓練の日 ＞ 総力UP ＞ 加速消費の日</span> と基本的になってるので、<br />加速は<span className="font-bold text-white underline decoration-rose-500 underline-offset-4 mx-1">訓練の日</span>に使い切りましょう。
                     </p>
                 </div>
                 
