@@ -859,12 +859,12 @@ const Calculator: React.FC = () => {
         </div>
         <div className="space-y-1">
           <h4 className="font-bold text-blue-300">計算ロジックと戦略メモ</h4>
-          <p className="mb-2 break-keep">
+          <p className="mb-2 break-keep whitespace-pre-line">
             境目となる時間（分） = 上昇する総力 × (イベント倍率 ÷ 300) <br/>
             通常建造・研究は倍率30、兵士は倍率20、<strong>研究の日</strong>は倍率45で計算されます。
           </p>
           {mode === 'troop' && (
-            <p className="text-rose-200/90 font-medium bg-rose-900/30 p-2 rounded border border-rose-500/30 break-keep">
+            <p className="text-rose-200/90 font-medium bg-rose-900/30 p-2 rounded border border-rose-500/30 break-keep whitespace-pre-line">
               ⚡ <strong>兵士イベントのヒント:</strong><br/>
               兵士イベントは「訓練の日」と「総力UPの日」の2種類でポイント獲得機会があります。<br/>
               上記グラフでポイントが高い日を狙って加速を使いましょう。<br/>
@@ -872,7 +872,7 @@ const Calculator: React.FC = () => {
             </p>
           )}
           {mode === 'research' && (
-            <p className="text-purple-200/90 font-medium bg-purple-900/30 p-2 rounded border border-purple-500/30 break-keep">
+            <p className="text-purple-200/90 font-medium bg-purple-900/30 p-2 rounded border border-purple-500/30 break-keep whitespace-pre-line">
               ⚡ <strong>研究イベントのヒント:</strong><br/>
               研究は「総力UP（30倍）」よりも「研究の日（45倍）」の方が圧倒的にポイント効率が良いです。<br/>
               急ぎでない場合は、研究の日に加速を使用することを強く推奨します。

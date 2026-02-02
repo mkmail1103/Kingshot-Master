@@ -672,7 +672,7 @@ Kingshot Optimizerで計算`;
                     <h5 className="text-sm font-bold text-amber-400 mb-2 flex items-center gap-2">
                         <TrendingUp className="w-4 h-4" /> 推奨計算式（黄金比）
                     </h5>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-3 break-keep">
+                    <p className="text-sm text-slate-400 leading-relaxed mb-3 break-keep whitespace-pre-line">
                         敵の編成を見て、火力を必要最小限にし、残りを耐久に回す計算式です。<br/>
                         <span className="text-xs text-slate-500">※自分の兵数が未入力の場合は、敵軍と同数の兵力があると仮定して比率を算出します。</span>
                     </p>
@@ -698,21 +698,21 @@ Kingshot Optimizerで計算`;
                             <div className="shrink-0 p-2 bg-blue-900/20 rounded-lg h-fit text-blue-400"><Shield className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">盾兵（歩兵）：壁役</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">全ての攻撃を受け止める最重要ポジション。これが全滅すると、後衛（槍・弓）も即死する。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep whitespace-pre-line">全ての攻撃を受け止める最重要ポジション。これが全滅すると、後衛（槍・弓）も即死する。</p>
                             </div>
                         </div>
                         <div className="flex gap-3">
                             <div className="shrink-0 p-2 bg-emerald-900/20 rounded-lg h-fit text-emerald-400"><Swords className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">槍兵（騎兵）：対 弓</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">敵の後衛（火力）を削るのが仕事。敵弓の「1/3の人数」で殲滅可能。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep whitespace-pre-line">敵の後衛（火力）を削るのが仕事。敵弓の「1/3の人数」で殲滅可能。</p>
                             </div>
                         </div>
                         <div className="flex gap-3">
                             <div className="shrink-0 p-2 bg-rose-900/20 rounded-lg h-fit text-rose-400"><Crosshair className="w-4 h-4" /></div>
                             <div>
                                 <div className="font-bold text-slate-200 text-sm">弓兵（弓兵）：対 盾</div>
-                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep">敵の前衛（壁）を削るのが仕事。敵盾の「1/2の人数」で殲滅可能。</p>
+                                <p className="text-xs text-slate-400 mt-1 leading-relaxed break-keep whitespace-pre-line">敵の前衛（壁）を削るのが仕事。敵盾の「1/2の人数」で殲滅可能。</p>
                             </div>
                         </div>
                     </div>
@@ -723,21 +723,21 @@ Kingshot Optimizerで計算`;
                     <ul className="space-y-3 text-sm text-slate-400">
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">①</span>
-                            <span className="break-keep">
+                            <span className="break-keep whitespace-pre-line">
                                 <strong className="text-slate-300">盾の生存 ＝ 勝利</strong><br/>
                                 火力職（槍・弓）には防御力がありません。盾が生き残っている時間だけが、攻撃できる時間です。
                             </span>
                         </li>
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">②</span>
-                            <span className="break-keep">
+                            <span className="break-keep whitespace-pre-line">
                                 <strong className="text-slate-300">火力枠は少数精鋭でよい</strong><br/>
                                 相性補正により、弓は2倍、槍は3倍の効率で敵を倒せます。過剰に編成する必要はありません。
                             </span>
                         </li>
                         <li className="flex gap-2">
                             <span className="text-amber-500 font-bold shrink-0">③</span>
-                            <span className="break-keep">
+                            <span className="break-keep whitespace-pre-line">
                                 <strong className="text-slate-300">余剰枠はすべて耐久へ</strong><br/>
                                 火力を計算式通りの最小限に抑え、浮いた枠をすべて「盾」に回すことで生存時間を最大化します。
                             </span>
