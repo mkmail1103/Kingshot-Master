@@ -287,7 +287,6 @@ const ResourceManager: React.FC = () => {
                                         <ArrowRight className="w-3 h-3 rotate-90 sm:rotate-0" />
                                         <span className="text-amber-400">スクショまたは入力</span>
                                     </div>
-                                    <p className="text-[10px] text-slate-500 mt-2 break-keep">※OCR解析のため、画像内の文字がはっきり見えるようにしてください。</p>
                                 </div>
                             )}
                         </div>
