@@ -44,7 +44,7 @@ const ResourceManager: React.FC = () => {
             .replace(/，/g, ',');
     };
 
-    // k/m/g の単位計算
+    // k/m/b の単位計算
     const parseSmartNumber = (val: string): number => {
         if (!val) return 0;
         const normalized = toHalfWidth(val);
@@ -54,7 +54,7 @@ const ResourceManager: React.FC = () => {
 
         if (lower.endsWith('k')) return num * 1000;
         if (lower.endsWith('m')) return num * 1000000;
-        if (lower.endsWith('g')) return num * 1000000000;
+        if (lower.endsWith('b')) return num * 1000000000;
         return num;
     };
 
@@ -79,7 +79,7 @@ const ResourceManager: React.FC = () => {
             setHoldings(prev => ({ ...prev, [id]: mult }));
             return;
         }
-        const base = toHalfWidth(current).replace(/[kmg]$/i, '');
+        const base = toHalfWidth(current).replace(/[kmb]$/i, '');
         setHoldings(prev => ({ ...prev, [id]: base + mult }));
     };
 
@@ -101,11 +101,11 @@ const ResourceManager: React.FC = () => {
 
         const cleanValue = (str: string) => {
             // スペースを除去してから数字以外を削除
-            return str.replace(/\s/g, '').replace(/[^0-9\.,kKmMgG]/g, '');
+            return str.replace(/\s/g, '').replace(/[^0-9\.,kKmMbB]/g, '');
         };
 
         // 数字抽出用正規表現（数字 + 任意のスペース + 単位）
-        const numRegex = /([0-9\.,]+\s?[kKmMgG]?)/g;
+        const numRegex = /([0-9\.,]+\s?[kKmMbB]?)/g;
 
         // 木材が見つかった行番号
         let woodLineIndex = -1;
@@ -300,7 +300,7 @@ const ResourceManager: React.FC = () => {
                                     <div className="flex gap-1.5">
                                         <input type="text" inputMode="decimal" value={holdings[config.id]} onChange={(e) => handleHoldingChange(config.id, e.target.value)} onCompositionStart={() => setIsComposing(true)} onCompositionEnd={(e) => handleCompositionEnd(e, config.id)} onFocus={handleFocus} placeholder="0" className={`min-w-0 flex-1 bg-[#1E293B] border border-slate-700 hover:border-slate-500 rounded-xl px-3 py-3 text-lg font-mono text-white focus:ring-2 focus:${config.ringColor} outline-none shadow-inner transition-colors placeholder:text-slate-600`} />
                                         <div className="flex gap-0.5 shrink-0">
-                                            {['k', 'm', 'g'].map((unit) => (
+                                            {['k', 'm', 'b'].map((unit) => (
                                                 <button key={unit} onClick={() => applyMultiplier(config.id, unit)} className={`w-9 rounded-lg font-bold text-sm transition-all border border-slate-700 hover:border-slate-500 active:scale-95 flex items-center justify-center uppercase ${holdings[config.id].toLowerCase().endsWith(unit) ? `${config.bgColor} text-white shadow-lg` : 'bg-[#1E293B] text-slate-400 hover:text-white hover:bg-slate-700'}`}>{unit}</button>
                                             ))}
                                         </div>

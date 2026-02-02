@@ -59,12 +59,12 @@ export const MOBILIZATION_QUESTS = [
     { cost: 5, points: 200, rank: '紫', color: 'text-purple-400' },
   ]},
   // 3. Stamina (Wild Beast)
-  { type: 'wild_beast', label: '野獣討伐', category: 'stamina', unit: '体力', variants: [
-    { cost: 300, points: 300, rank: '黄', color: 'text-yellow-400' }, // 30 times * 10
-    { cost: 200, points: 240, rank: '紫', color: 'text-purple-400' }, // 20 times * 10
-    { cost: 150, points: 200, rank: '紫', color: 'text-purple-400' }, // 15 times * 10
-    { cost: 100, points: 160, rank: '青', color: 'text-blue-400' }, // 10 times * 10
-    { cost: 50, points: 120, rank: '青', color: 'text-blue-400' }, // 5 times * 10
+  { type: 'wild_beast', label: '野獣討伐', category: 'stamina', unit: '回', variants: [
+    { cost: 30, points: 300, rank: '黄', color: 'text-yellow-400' }, // 30 times (300 stamina)
+    { cost: 20, points: 240, rank: '紫', color: 'text-purple-400' }, // 20 times (200 stamina)
+    { cost: 15, points: 200, rank: '紫', color: 'text-purple-400' }, // 15 times (150 stamina)
+    { cost: 10, points: 160, rank: '青', color: 'text-blue-400' }, // 10 times (100 stamina)
+    { cost: 5, points: 120, rank: '青', color: 'text-blue-400' }, // 5 times (50 stamina)
   ]},
   // 4. Troop Training (New)
   { type: 'training', label: '兵士訓練', category: 'training', unit: '戦力', variants: [

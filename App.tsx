@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import Calculator from './components/Calculator';
 import ResourceManager from './components/ResourceManager';
 import MobilizationGuide from './components/MobilizationGuide';
 import TroopRatioCalculator from './components/TroopRatioCalculator';
-import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart } from 'lucide-react';
+import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart, Heart } from 'lucide-react';
 
 type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization' | 'ratio';
 
@@ -28,11 +27,13 @@ const App: React.FC = () => {
   };
 
   const LATEST_CODE = {
-    code: "KINGDOMSTAR",
-    limit: "2026年1月26日"
+    code: "TACODE0127",
+    limit: "2026年1月31日"
   };
 
   const OTHER_CODES = [
+    { code: "WEEKENDJOY", limit: "2026/01/28まで" },
+    { code: "KINGDOMSTAR", limit: "2026/01/26まで" },
     { code: "SAYCHEESE26", limit: "2026/01/25まで" },
     { code: "ENERGY0112", limit: "2026/01/15まで" },
     { code: "jpseijin26", limit: "2026/01/15まで" },
@@ -69,7 +70,7 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.1</div>
+            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.2</div>
           </div>
         </div>
       </header>
@@ -361,7 +362,10 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 text-sm">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.1</p>
+          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.2</p>
+          <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
+            Created by <span className="font-medium text-slate-600">#1239 あたりまえじょ</span>
+          </p>
         </div>
       </footer>
     </div>

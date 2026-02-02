@@ -388,7 +388,7 @@ const MobilizationGuide: React.FC = () => {
        'diamonds': { key: 'diamonds', icon: IconDiamonds, color: 'text-cyan-400', unit: '個' },
        'hammer': { key: 'hammer', icon: IconHeroGear, color: 'text-purple-400', unit: '個' },
        'hero_shards': { key: 'hero_shards', icon: IconHeroShards, color: 'text-orange-400', unit: '個' },
-       'wild_beast': { key: 'stamina', icon: IconWildBeast, color: 'text-amber-700', unit: '体力' },
+       'wild_beast': { key: 'stamina', icon: IconWildBeast, color: 'text-amber-700', unit: '回' },
        // Note: Training, Equip, Gem removed from calculation map
     };
 
@@ -436,6 +436,12 @@ const MobilizationGuide: React.FC = () => {
       // Helper to check/deduct cost
       const canAfford = (v: QuestVariant, inv: Inventory): boolean => {
           let needed = v.cost;
+
+          // SPECIAL RULE: Wild Beast (1 time = 10 stamina)
+          if (v.type === 'wild_beast') {
+             needed = v.cost * 10;
+          }
+          
           let available = inv[v.resourceKey];
           
           // Speedup Logic: Use specific first, then general
@@ -449,6 +455,11 @@ const MobilizationGuide: React.FC = () => {
 
       const deduct = (v: QuestVariant, inv: Inventory) => {
           let needed = v.cost;
+
+          // SPECIAL RULE: Wild Beast (1 time = 10 stamina)
+          if (v.type === 'wild_beast') {
+             needed = v.cost * 10;
+          }
           
           if (v.type.startsWith('speedup_') && v.type !== 'speedup_general') {
              const specific = inv[v.resourceKey];
@@ -494,11 +505,33 @@ const MobilizationGuide: React.FC = () => {
               const upgrade = variants[j];
               if (upgrade.points <= current.points) break; 
               
-              const diff = upgrade.cost - current.cost;
-              const diffVariant = { ...upgrade, cost: diff };
+              let costDiff = upgrade.cost - current.cost;
+              // SPECIAL RULE Adjustment for costDiff check if needed, 
+              // but standard logic: we need to check if we can afford the full upgrade cost, then refund old cost?
+              // Or simpler: check if we can afford (upgrade_cost - current_cost)
               
-              if (canAfford(diffVariant, tempInv)) {
-                  deduct(diffVariant, tempInv);
+              let realUpgradeCost = upgrade.cost;
+              let realCurrentCost = current.cost;
+              
+              if (current.type === 'wild_beast') {
+                  realUpgradeCost = upgrade.cost * 10;
+                  realCurrentCost = current.cost * 10;
+                  costDiff = realUpgradeCost - realCurrentCost;
+              }
+
+              // Create a temp variant object just for checking affordability of the difference
+              const diffVariant = { ...upgrade, cost: costDiff }; // Note: cost here is abstract, handled by custom logic below?
+              // canAfford expects variant.cost to be the base unit. 
+              // If wild_beast, canAfford multiplies by 10.
+              // So if we pass costDiff (which is already multiplied by 10 for wild_beast above), it will be multiplied again.
+              // Let's reset costDiff to base unit for wild_beast.
+              if (current.type === 'wild_beast') {
+                  costDiff = upgrade.cost - current.cost;
+              }
+              const variantForCheck = { ...upgrade, cost: costDiff };
+
+              if (canAfford(variantForCheck, tempInv)) {
+                  deduct(variantForCheck, tempInv);
                   selectedQuests[i] = upgrade; // Swap
                   break; // Move to next quest
               }
@@ -693,6 +726,12 @@ const MobilizationGuide: React.FC = () => {
         let isPossible = false;
         let unit = questType.unit || '分';
         let Icon = null;
+        let requiredCost = variant.cost;
+
+        // SPECIAL RULE: Wild Beast (1 time = 10 stamina)
+        if (questType.type === 'wild_beast') {
+           requiredCost = variant.cost * 10;
+        }
         
         // Define Icon for listing
         if (questType.type === 'speedup_general') Icon = IconSpeedupGeneral;
@@ -718,8 +757,8 @@ const MobilizationGuide: React.FC = () => {
             else if (questType.type === 'wild_beast') availableInv = inventory.stamina;
         }
 
-        isPossible = availableInv >= variant.cost;
-        let efficiencyScore = variant.cost / variant.points;
+        isPossible = availableInv >= requiredCost;
+        let efficiencyScore = requiredCost / variant.points;
         
         const item = { 
             ...variant, 
@@ -727,7 +766,8 @@ const MobilizationGuide: React.FC = () => {
             currentInv: availableInv, 
             efficiencyScore, 
             unit,
-            icon: Icon
+            icon: Icon,
+            requiredCost // For display of shortage
         };
 
         if (isPossible) possibleList.push(item);
@@ -1466,7 +1506,7 @@ const MobilizationGuide: React.FC = () => {
                                   <AlertTriangle className="w-3 h-3" /> 不足
                                 </div>
                                <div className="text-xs font-mono text-rose-400">
-                                  -{(rec.cost - rec.currentInv).toLocaleString()} {rec.unit}
+                                  -{(rec.requiredCost - rec.currentInv).toLocaleString()} {rec.unit}
                                 </div>
                             </div>
                          </div>
