@@ -27,11 +27,16 @@ const App: React.FC = () => {
   };
 
   const LATEST_CODE = {
-    code: "TACODE0127",
-    limit: "2026年1月31日"
+    code: "SPRINGFES217",
+    limit: "2026年2月22日"
   };
 
   const OTHER_CODES = [
+    { code: "KINGSTORE210", limit: "2026/02/23まで" },
+    { code: "LOVEKS2026", limit: "2026/02/18まで" },
+    { code: "THANKSJP26", limit: "2026/02/14まで" },
+    { code: "TGIFBOOST26", limit: "2026/02/11まで" },
+    { code: "TACODE0127", limit: "2026/01/31まで" },
     { code: "WEEKENDJOY", limit: "2026/01/28まで" },
     { code: "KINGDOMSTAR", limit: "2026/01/26まで" },
     { code: "SAYCHEESE26", limit: "2026/01/25まで" },
