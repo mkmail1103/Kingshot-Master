@@ -3,9 +3,10 @@ import Calculator from './components/Calculator';
 import ResourceManager from './components/ResourceManager';
 import MobilizationGuide from './components/MobilizationGuide';
 import TroopRatioCalculator from './components/TroopRatioCalculator';
-import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart, Heart } from 'lucide-react';
+import CastleBattle from './components/CastleBattle';
+import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart, Heart, Shield } from 'lucide-react';
 
-type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization' | 'ratio';
+type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization' | 'ratio' | 'castle';
 
 const App: React.FC = () => {
   // Default view set to 'mobilization' as requested
@@ -27,11 +28,15 @@ const App: React.FC = () => {
   };
 
   const LATEST_CODE = {
-    code: "SPRINGFES217",
-    limit: "2026年2月22日"
+    code: "DC500KWEMADEIT",
+    limit: "2026年3月13日"
   };
 
   const OTHER_CODES = [
+    { code: "RAMADAN", limit: "2026/03/19まで" },
+    { code: "THUR0305", limit: "2026/03/09まで" },
+    { code: "ITSFRIDAY227", limit: "2026/03/03まで" },
+    { code: "SPRINGFES217", limit: "2026/02/22まで" },
     { code: "KINGSTORE210", limit: "2026/02/23まで" },
     { code: "LOVEKS2026", limit: "2026/02/18まで" },
     { code: "THANKSJP26", limit: "2026/02/14まで" },
@@ -75,7 +80,7 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.25.2</div>
+            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.26.1</div>
           </div>
         </div>
       </header>
@@ -86,6 +91,7 @@ const App: React.FC = () => {
           <div className="bg-slate-900/80 p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative">
              {[
                { id: 'ratio', icon: PieChart, label: '兵士比率', color: 'bg-rose-600', text: 'text-rose-400' },
+               { id: 'castle', icon: Shield, label: '王城戦', color: 'bg-fuchsia-600', text: 'text-fuchsia-400' },
                { id: 'mobilization', icon: Flag, label: '総動員', color: 'bg-indigo-600', text: 'text-indigo-400' },
                { id: 'speedup', icon: Zap, label: '最強領主', color: 'bg-amber-600', text: 'text-amber-400' },
                { id: 'resource', icon: Pickaxe, label: '資源', color: 'bg-blue-600', text: 'text-blue-400' },
@@ -134,6 +140,24 @@ const App: React.FC = () => {
             </div>
             <TroopRatioCalculator />
            </div>
+        )}
+
+        {view === 'castle' && (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="text-center mb-8 max-w-3xl mx-auto">
+              <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-300 text-xs font-medium mb-4 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 mr-2 animate-pulse"></span>
+                入り込み駐屯支援
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight drop-shadow-2xl">
+                王城戦タイミング計算
+              </h2>
+              <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl mx-auto">
+                相手の連続集結の隙間を計算し、自分の駐屯を差し込むタイミングを算出します。
+              </p>
+            </div>
+            <CastleBattle />
+          </div>
         )}
 
         {view === 'mobilization' && (
@@ -367,9 +391,9 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Optimizer. Unofficial Tool. v0.25.2</p>
+          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Optimizer. Unofficial Tool. v0.26.1</p>
           <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
-            Created by <span className="font-medium text-slate-600">#1239 あたりまえじょ</span>
+            Created by #1239 あたりまえじょ
           </p>
         </div>
       </footer>
