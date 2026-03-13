@@ -260,17 +260,17 @@ const CastleBattle: React.FC = () => {
       {/* Analysis Results */}
       <div className="bg-[#050505] border border-[#1a1a1a] rounded-2xl p-1 overflow-hidden">
         <div className="bg-gradient-to-r from-[#0a0a0a] to-[#111] rounded-xl p-5">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-fuchsia-500/20 rounded-lg">
-                <Swords className="w-5 h-5 text-fuchsia-400" />
+          <div className="flex items-center justify-between gap-2 mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="p-1.5 sm:p-2 bg-fuchsia-500/20 rounded-lg shrink-0">
+                <Swords className="w-4 h-4 sm:w-5 sm:h-5 text-fuchsia-400" />
               </div>
-              <h3 className="text-xl font-black text-white tracking-tight">着弾分析 & 駐屯タイミング</h3>
+              <h3 className="text-[14px] sm:text-xl font-black text-white tracking-tight leading-tight">着弾分析 & 駐屯タイミング</h3>
             </div>
             
             <button 
               onClick={handleCopy}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+              className={`flex items-center justify-center gap-1.5 px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[11px] sm:text-sm font-bold transition-all shrink-0 ${
                 isCopied 
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' 
                   : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
