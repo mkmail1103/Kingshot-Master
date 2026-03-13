@@ -4,7 +4,7 @@ import ResourceManager from './components/ResourceManager';
 import MobilizationGuide from './components/MobilizationGuide';
 import TroopRatioCalculator from './components/TroopRatioCalculator';
 import CastleBattle from './components/CastleBattle';
-import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart, Heart, Shield } from 'lucide-react';
+import { Crown, Zap, Pickaxe, Gift, Copy, Check, ExternalLink, User, Info, Flag, History, CalendarClock, PieChart, Heart, Shield, MessageSquare } from 'lucide-react';
 
 type ViewMode = 'speedup' | 'resource' | 'giftcode' | 'mobilization' | 'ratio' | 'castle';
 
@@ -80,6 +80,10 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
+            <a href="https://forms.gle/d6CecUuJeKUwU4ff6" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-3 py-1.5 rounded-full">
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>ご要望・バグ報告</span>
+            </a>
             <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.26.1</div>
           </div>
         </div>
@@ -391,6 +395,17 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
+          <div className="mb-6">
+            <a 
+              href="https://forms.gle/d6CecUuJeKUwU4ff6" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-5 py-2.5 rounded-full"
+            >
+              <MessageSquare className="w-4 h-4" />
+              フィードバック・ご要望はこちら
+            </a>
+          </div>
           <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Master. Unofficial Tool. v0.26.1</p>
           <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
             Created by #1239 あたりまえじょ
