@@ -79,20 +79,21 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          <div className="flex items-center gap-4">
-            <a href="https://forms.gle/d6CecUuJeKUwU4ff6" target="_blank" rel="noopener noreferrer" className="hidden sm:flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-3 py-1.5 rounded-full">
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>ご要望・バグ報告</span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <a href="https://forms.gle/d6CecUuJeKUwU4ff6" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-[10px] sm:text-xs text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
+              <MessageSquare className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+              <span className="hidden sm:inline">ご要望・バグ報告</span>
+              <span className="sm:hidden">要望</span>
             </a>
-            <div className="text-xs text-slate-500 font-medium hidden sm:block">v0.26.1</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">v0.26.1</div>
           </div>
         </div>
       </header>
 
       {/* Navigation Bar - Modernized */}
-      <div className="sticky top-16 z-40 bg-[#0B1120]/60 backdrop-blur-md border-b border-white/5 py-4 overflow-x-auto no-scrollbar">
-        <div className="max-w-3xl mx-auto px-4 min-w-[360px]">
-          <div className="bg-slate-900/80 p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative">
+      <div className="sticky top-16 z-40 bg-[#0B1120]/60 backdrop-blur-md border-b border-white/5 py-3 sm:py-4 overflow-x-auto no-scrollbar">
+        <div className="max-w-3xl mx-auto px-2 sm:px-4 min-w-max">
+          <div className="bg-slate-900/80 p-1 sm:p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative">
              {[
                { id: 'ratio', icon: PieChart, label: '兵士比率', color: 'bg-rose-600', text: 'text-rose-400' },
                { id: 'castle', icon: Shield, label: '王城戦', color: 'bg-fuchsia-600', text: 'text-fuchsia-400' },
@@ -107,7 +108,7 @@ const App: React.FC = () => {
                  <button
                     key={tab.id}
                     onClick={() => setView(tab.id as ViewMode)}
-                    className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-lg text-[11px] sm:text-sm font-bold transition-all duration-300 relative whitespace-nowrap ${
+                    className={`flex-1 flex items-center justify-center gap-1 sm:gap-1.5 py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg text-[10px] sm:text-sm font-bold transition-all duration-300 relative whitespace-nowrap ${
                       isActive 
                         ? 'bg-slate-800 text-white shadow-md shadow-black/20 ring-1 ring-white/10' 
                         : 'text-slate-500 hover:text-slate-300 hover:bg-white/5'
