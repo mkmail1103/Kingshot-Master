@@ -74,7 +74,7 @@ const App: React.FC = () => {
               <Crown className="text-white w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.5} />
             </div>
             <div>
-              <h1 className="text-lg sm:text-xl font-bold text-slate-100 tracking-tight leading-none group-hover:text-white transition-colors">Kingshot <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">Optimizer</span></h1>
+              <h1 className="text-lg sm:text-xl font-bold text-slate-100 tracking-tight leading-none group-hover:text-white transition-colors">Kingshot <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">Master</span></h1>
               <p className="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-500 font-semibold mt-0.5 sm:mt-1">Unofficial Strategy Tool</p>
             </div>
           </div>
@@ -391,7 +391,7 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/5 bg-[#0B1120]/50 backdrop-blur-sm py-8 mt-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Optimizer. Unofficial Tool. v0.26.1</p>
+          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Master. Unofficial Tool. v0.26.1</p>
           <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
             Created by #1239 あたりまえじょ
           </p>
