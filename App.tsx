@@ -401,9 +401,9 @@ const App: React.FC = () => {
               href="https://forms.gle/d6CecUuJeKUwU4ff6" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center gap-2 text-xs sm:text-sm text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full"
+              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors bg-emerald-400/10 hover:bg-emerald-400/20 px-5 py-2.5 rounded-full"
             >
-              <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <MessageSquare className="w-4 h-4" />
               フィードバック・ご要望はこちら
             </a>
           </div>
