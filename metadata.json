@@ -1,5 +1,5 @@
 {
-  "name": "Kingshot Optimizer",
+  "name": "Kingshot Master",
   "description": "A strategy calculator for the 'Strongest Lord' event in Kingshot. Optimizes speed-up usage for Building, Research, and Troop Training events.",
   "requestFramePermissions": [
     "camera"
