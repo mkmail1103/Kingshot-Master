@@ -1,7 +1,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { createWorker } from 'tesseract.js';
-import { Shield, Swords, Crosshair, Users, Copy, Check, AlertTriangle, Info, PieChart, ArrowRight, TrendingUp, Percent, Calculator, Camera, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Shield, Swords, Crosshair, Users, Copy, Check, AlertTriangle, Info, PieChart, ArrowRight, TrendingUp, Percent, Calculator, Camera, Loader2, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
 
 // -----------------------------------------------------------------------------
@@ -767,6 +767,33 @@ Kingshot Optimizerで計算`;
                             </span>
                         </li>
                     </ul>
+                </div>
+
+                <div className="pt-4 border-t border-white/5">
+                    <h5 className="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+                        <ExternalLink className="w-4 h-4 text-indigo-400" />
+                        参考文献
+                    </h5>
+                    <a 
+                        href="https://www.youtube.com/watch?v=KFD7KG44rzE" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="block bg-slate-950/50 hover:bg-slate-900 border border-white/5 hover:border-indigo-500/30 rounded-xl p-3 transition-all group"
+                    >
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 group-hover:bg-red-500/20 transition-colors">
+                                <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-red-500 border-b-[6px] border-b-transparent ml-1"></div>
+                            </div>
+                            <div>
+                                <div className="text-sm font-bold text-slate-200 group-hover:text-indigo-300 transition-colors line-clamp-1">
+                                    【ホワイトアウト・サバイバル】兵士の割合について
+                                </div>
+                                <div className="text-xs text-slate-500 mt-0.5">
+                                    YouTubeで動画を見る
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
