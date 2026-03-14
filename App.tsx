@@ -414,7 +414,7 @@ const App: React.FC = () => {
           </div>
           <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Master. Unofficial Tool. v.1.16.1</p>
           <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
-            Created by #1239 あたりまえじょ
+            Created by #1239 [N44]あたりまえじょ
           </p>
         </div>
       </footer>
