@@ -85,7 +85,7 @@ const App: React.FC = () => {
               <span className="hidden sm:inline">ご要望・バグ報告</span>
               <span className="sm:hidden">要望</span>
             </a>
-            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">v0.26.1</div>
+            <div className="text-[10px] sm:text-xs text-slate-500 font-medium">v.1.16.1</div>
           </div>
         </div>
       </header>
@@ -95,7 +95,7 @@ const App: React.FC = () => {
         <div className="max-w-3xl mx-auto px-2 sm:px-4 min-w-max">
           <div className="bg-slate-900/80 p-1 sm:p-1.5 rounded-xl border border-white/5 flex gap-1 shadow-2xl relative">
              {[
-               { id: 'ratio', icon: PieChart, label: '兵士比率', color: 'bg-rose-600', text: 'text-rose-400' },
+               { id: 'ratio', icon: PieChart, label: '兵士比率', color: 'bg-rose-600', text: 'text-rose-400', badge: 'Beta' },
                { id: 'castle', icon: Shield, label: '王城戦', color: 'bg-fuchsia-600', text: 'text-fuchsia-400' },
                { id: 'mobilization', icon: Flag, label: '総動員', color: 'bg-indigo-600', text: 'text-indigo-400' },
                { id: 'speedup', icon: Zap, label: '最強領主', color: 'bg-amber-600', text: 'text-amber-400' },
@@ -119,6 +119,11 @@ const App: React.FC = () => {
                    )}
                    <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isActive ? tab.text : 'opacity-70'}`} strokeWidth={isActive ? 2.5 : 2} />
                    <span className={isActive ? 'opacity-100' : 'opacity-90'}>{tab.label}</span>
+                   {tab.badge && (
+                     <span className="absolute -top-1.5 -right-1.5 bg-rose-500 text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded-full shadow-lg border border-rose-400/50 animate-pulse">
+                       {tab.badge}
+                     </span>
+                   )}
                  </button>
                );
              })}
@@ -152,7 +157,7 @@ const App: React.FC = () => {
             <div className="text-center mb-8 max-w-3xl mx-auto">
               <div className="inline-flex items-center justify-center px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-300 text-xs font-medium mb-4 backdrop-blur-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400 mr-2 animate-pulse"></span>
-                入り込み駐屯支援
+                差し込み駐屯支援
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight drop-shadow-2xl">
                 王城戦タイミング計算
@@ -407,7 +412,7 @@ const App: React.FC = () => {
               フィードバック・ご要望はこちら
             </a>
           </div>
-          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Master. Unofficial Tool. v0.26.1</p>
+          <p className="text-slate-600 text-sm mb-2">© 2026 Kingshot Master. Unofficial Tool. v.1.16.1</p>
           <p className="text-slate-700 text-xs flex items-center justify-center gap-1">
             Created by #1239 あたりまえじょ
           </p>
